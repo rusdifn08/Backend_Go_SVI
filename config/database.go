@@ -15,28 +15,39 @@ import (
 var DB *gorm.DB
 
 func InitDB() *gorm.DB {
-	dbUser := getEnv("DB_USER", "root")
-	dbPass := getEnv("DB_PASSWORD", "")
-	dbHost := getEnv("DB_HOST", "127.0.0.1")
-	dbPort := getEnv("DB_PORT", "3306")
-	dbName := getEnv("DB_NAME", "article")
+	dbUser := getEnv("DB_USER", "4TYLPkigyGPqtu5.root")
+	dbPass := getEnv("DB_PASSWORD", "eU91Td4D7tdl9YEA")
+	dbHost := getEnv("DB_HOST", "gateway01.ap-southeast-1.prod.aws.tidbcloud.com")
+	dbPort := getEnv("DB_PORT", "4000")
+	dbName := getEnv("DB_NAME", "test")
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+	// DSN with TLS support for TiDB Cloud
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local&tls=true",
 		dbUser, dbPass, dbHost, dbPort, dbName)
+
+	log.Printf("Connecting to TiDB Cloud database at %s:%s/%s...", dbHost, dbPort, dbName)
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
 	if err != nil {
-		log.Printf("Warning: Failed to connect to MySQL database: %v. Running in mock/fallback mode or check DB connection.", err)
-		return nil
+		log.Printf("Trying connection without explicit tls param...")
+		fallbackDsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+			dbUser, dbPass, dbHost, dbPort, dbName)
+		db, err = gorm.Open(mysql.Open(fallbackDsn), &gorm.Config{
+			Logger: logger.Default.LogMode(logger.Info),
+		})
+		if err != nil {
+			log.Printf("Error connecting to TiDB Cloud database: %v", err)
+			return nil
+		}
 	}
 
-	log.Println("Database connection established successfully.")
+	log.Println("Successfully connected to TiDB Cloud database!")
 
-	// Auto Migrate schema
+	// Auto Migrate schema for posts table
 	if err := db.AutoMigrate(&domain.Article{}); err != nil {
-		log.Printf("AutoMigrate warning: %v", err)
+		log.Printf("AutoMigrate error: %v", err)
 	}
 
 	DB = db
