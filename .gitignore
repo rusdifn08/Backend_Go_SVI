@@ -1,0 +1,24 @@
+# Binaries for SDKs and apps
+*.exe
+*.exe-
+*.dll
+*.so
+*.dylib
+
+# Test binary built for `go test`
+*.test
+
+# Output of the go default compiler
+*.out
+bin/
+dist/
+
+# Environment variables
+.env
+.env.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
