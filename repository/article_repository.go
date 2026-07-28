@@ -47,64 +47,80 @@ func (r *articleRepository) getDummyArticles() []domain.Article {
 	now := time.Now()
 	return []domain.Article{
 		{
-			Title:       "Panduan Lengkap Microservice dengan Golang dan Clean Architecture",
-			Content:     "Microservice architecture telah menjadi standar industri untuk membangun aplikasi scalable. Dalam panduan ini, kita akan membahas penerapan Clean Architecture menggunakan bahasa pemrograman Go (Golang), framework Gin, dan GORM untuk manajemen database TiDB Cloud secara efisien dan performan tinggi.",
-			Category:    "Technology",
+			Title:       "Pengalaman Mengembangkan Microservice Berbasis Golang dan TiDB Cloud di Environment Production",
+			Content:     "Dalam beberapa tahun terakhir, migrasi dari arsitektur monolitik ke microservice menjadi tren utama di banyak perusahaan teknologi. Penggunaan Golang dengan framework Gin terbukti memberikan efisiensi memori yang luar biasa dan latensi yang sangat rendah. Ditambah dengan integrasi TiDB Cloud sebagai NewSQL terdistribusi, kita mendapatkan skalabilitas horizontal tanpa perlu memikirkan kompleksitas sharding database secara manual.",
+			Category:    "Teknologi",
 			CreatedDate: now,
 			UpdatedDate: now,
 			Status:      domain.StatusPublish,
 		},
 		{
-			Title:       "Mengenal Next.js App Router dan State Management Zustand",
-			Content:     "Next.js App Router membawa perubahan mendasar dalam cara kita membangun frontend modern. Dipadukan dengan Zustand sebagai state manager yang ringan dan intuitif, pengembang dapat mengelola global state tanpa overhead kompleksitas Redux pada dashboard CMS artikel.",
-			Category:    "Frontend",
+			Title:       "Panduan Lengkap Implementasi State Management Zustand Pada Next.js App Router",
+			Content:     "Mengelola global state pada Next.js versi 14 dengan App Router terkadang membingungkan bagi pengembang frontend pemula. Zustand hadir sebagai solusi state management yang sangat ringan, tanpa butuh boilerplate yang rumit seperti Redux. Dalam artikel ini, kita akan mengulas bagaimana cara mendefinisikan store Zustand, menangani async API call, serta mengoptimalkan re-render komponen secara efektif.",
+			Category:    "Pemrograman",
 			CreatedDate: now,
 			UpdatedDate: now,
 			Status:      domain.StatusPublish,
 		},
 		{
-			Title:       "Optimasi Query Database MySQL dan TiDB Cloud untuk Aplikasi Scalable",
-			Content:     "TiDB Cloud adalah database NewSQL terdistribusi yang kompatibel penuh dengan protokol MySQL. Dalam panduan ini, kita membahas teknik indexing, pemanfaatan connection pooling, dan struktur schema SQL untuk menjaga latency query tetap stabil dalam hitungan milidetik.",
+			Title:       "Prinsip Utama Desain UI/UX Modern: Membangun Antarmuka Kaca Translusen yang Ergonomis",
+			Content:     "Tampilan antarmuka yang bersih dan intuitif sangat penting dalam memberikan pengalaman pengguna yang berkesan. Pendekatan desain modern memanfaatkan kontras warna yang tepat, tipografi yang jelas, serta hirarki visual yang terstruktur. Penggunaan aksen warna biru korporat dan layout yang responsif membuat pengoperasian aplikasi CMS menjadi lebih menyenangkan.",
+			Category:    "Desain UI/UX",
+			CreatedDate: now,
+			UpdatedDate: now,
+			Status:      domain.StatusPublish,
+		},
+		{
+			Title:       "Strategi Manajemen Database Terdistribusi Menggunakan TiDB Cloud untuk Skalabilitas Tinggi",
+			Content:     "Skalabilitas database relational merupakan salah satu tantangan terbesar saat aplikasi berkembang pesat. TiDB Cloud menghadirkan arsitektur NewSQL terdistribusi yang kompatibel dengan protokol MySQL. Fitur auto-scaling dan High Availability bawaan memastikan query tetap dapat berjalan cepat dalam hitungan milidetik meskipun volume data bertambah drastis.",
 			Category:    "Database",
 			CreatedDate: now,
 			UpdatedDate: now,
 			Status:      domain.StatusPublish,
 		},
 		{
-			Title:       "Rancangan Arsitektur Sistem E-Commerce dengan Microservices Golang",
-			Content:     "Membangun sistem e-commerce berskala besar membutuhkan pemisahan concern pada level service. Artikel draft ini membahas strategi pemisahan service katalog, payment gateway, manajemen inventoris, dan autentikasi JWT di dalam ekosistem microservices Go.",
-			Category:    "Architecture",
+			Title:       "Tips Karir Software Engineer: Langkah Menjadi Full-Stack Developer Profesional",
+			Content:     "Menjadi seorang Full-Stack Software Engineer yang kompeten membutuhkan pemahaman mendalam tentang konsep dasar software engineering, mulai dari Clean Architecture di sisi backend hingga Atomic Design Pattern di sisi frontend. Selain kemampuan teknis, pemahaman tentang komunikasi dan pemecahan masalah secara terstruktur adalah kunci sukses karir di industri IT.",
+			Category:    "Karir IT",
+			CreatedDate: now,
+			UpdatedDate: now,
+			Status:      domain.StatusPublish,
+		},
+		{
+			Title:       "Draf Artikel Mengenai Best Practices Keamanan RESTful API dan Enkripsi Payload",
+			Content:     "Keamanan merupakan aspek krusial dalam pembangunan RESTful API modern. Draf artikel ini membahas implementasi Rate Limiting, sanitasi input untuk mencegah XSS dan SQL Injection, pengoperasian protokol HTTPS/TLS, serta autentikasi berbasis JSON Web Token (JWT) secara ketat.",
+			Category:    "Keamanan",
 			CreatedDate: now,
 			UpdatedDate: now,
 			Status:      domain.StatusDraft,
 		},
 		{
-			Title:       "Panduan Lengkap Integrasi CI/CD Pipeline dengan Docker dan Kubernetes",
-			Content:     "Otomatisasi pengujian dan penggelaran aplikasi adalah kunci kecepatan inovasi produk. Dalam artikel draft ini, kita mendiskusikan langkah konfigurasi GitHub Actions, pembentukan image Docker yang teroptimasi, dan penggelaran otomatis ke kluster Kubernetes.",
+			Title:       "Draf Panduan Integrasi Automated Testing dan CI/CD Pipeline Menggunakan GitHub Actions",
+			Content:     "Proses pengujian otomatis sebelum deployment membantu menjaga kualitas kode dan mencegah regresi bug di lingkungan production. Draf tutorial ini menjelaskan langkah penyusunan workflow GitHub Actions, eksekusi unit test Golang, dan pembuatan Docker image secara otomatis saat push ke branch main.",
 			Category:    "DevOps",
 			CreatedDate: now,
 			UpdatedDate: now,
 			Status:      domain.StatusDraft,
 		},
 		{
-			Title:       "Draft Artikel Mengenai Best Practices Security pada RESTful API",
-			Content:     "Keamanan API merupakan aspek kritis yang tidak boleh diabaikan. Penulisan draf artikel ini mengulas implementasi Rate Limiting, Input Sanitization untuk mencegah SQL Injection, CORS Policy yang ketat, serta enkripsi payload sensitif.",
-			Category:    "Security",
+			Title:       "Catatan Riset Internal Mengenai Struktur Data B-Tree dan LSM-Tree Pada Engine Database",
+			Content:     "Dokumen riset internal ini menganalisis perbedaan performa antara struktur data B-Tree yang banyak digunakan di database relasional tradisional dengan LSM-Tree (Log-Structured Merge-tree) yang digunakan pada engine penyimpanan modern untuk write-heavy workloads.",
+			Category:    "Database",
 			CreatedDate: now,
 			UpdatedDate: now,
 			Status:      domain.StatusDraft,
 		},
 		{
-			Title:       "Artikel Lama Mengenai Monolithic Framework Yang Sudah Dihapus",
-			Content:     "Ini adalah konten artikel contoh yang dipindahkan ke status thrash untuk pengujian fitur restore atau permanent removal pada dashboard manajemen post Sharing Vision.",
-			Category:    "General",
+			Title:       "Catatan Diskusi Arsitektur Monolith Framework PHP Yang Sudah Tidak Digunakan Lagi",
+			Content:     "Dokumen ini merupakan catatan diskusi arsitektur sistem lama berarsitektur monolith berbasis PHP yang kini telah tidak digunakan lagi setelah migration penuh ke microservice Golang dan Next.js App Router.",
+			Category:    "Arsip",
 			CreatedDate: now,
 			UpdatedDate: now,
 			Status:      domain.StatusThrash,
 		},
 		{
-			Title:       "Catatan Riset Perbandingan Performance Redis vs Memcached",
-			Content:     "Arsip artikel perbandingan caching layer yang sudah dipindahkan ke kategori sampah (thrash) setelah dilakukan revisi strategi in-memory storage pada infrastruktur backend.",
+			Title:       "Draft Riset Caching Layer Menggunakan Memcached Yang Dipindahkan Ke Trash",
+			Content:     "Riset mengenai penggunaan Memcached sebagai caching layer temporary yang kini dipindahkan ke kategori sampah (thrash) setelah tim memilih strategi caching yang terintegrasi langsung di memory application layer.",
 			Category:    "Backend",
 			CreatedDate: now,
 			UpdatedDate: now,
@@ -116,15 +132,16 @@ func (r *articleRepository) getDummyArticles() []domain.Article {
 func (r *articleRepository) seedTiDBDatabase() {
 	var count int64
 	if err := r.db.Model(&domain.Article{}).Count(&count).Error; err == nil {
-		if count == 0 {
-			log.Println("Seeding initial dummy data to TiDB Cloud database...")
+		// Replace old seeds or populate if empty or count < 5
+		if count < 5 {
+			log.Println("Seeding rich human-like dummy articles to TiDB Cloud database...")
 			dummies := r.getDummyArticles()
 			for _, article := range dummies {
 				if err := r.db.Create(&article).Error; err != nil {
 					log.Printf("Error seeding article: %v", err)
 				}
 			}
-			log.Println("Database TiDB Cloud successfully seeded with dummy data!")
+			log.Println("Database TiDB Cloud successfully seeded with realistic dummy articles!")
 		}
 	}
 }
