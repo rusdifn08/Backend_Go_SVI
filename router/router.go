@@ -10,6 +10,9 @@ import (
 func SetupRouter(articleHandler *handler.ArticleHandler) *gin.Engine {
 	r := gin.Default()
 
+	r.RedirectTrailingSlash = true
+	r.RedirectFixedPath = true
+
 	// CORS configuration
 	config := cors.DefaultConfig()
 	config.AllowAllOrigins = true
@@ -17,25 +20,26 @@ func SetupRouter(articleHandler *handler.ArticleHandler) *gin.Engine {
 	config.AllowHeaders = []string{"Origin", "Content-Type", "Accept", "Authorization"}
 	r.Use(cors.New(config))
 
+	// Root Health Check Route
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"status":  "ok",
+			"message": "Sharing Vision Article Microservice API is running smoothly",
+		})
+	})
+
 	// Routes for /article
 	articleGroup := r.Group("/article")
 	{
-		// Create article
 		articleGroup.POST("", articleHandler.CreateArticle)
 		articleGroup.POST("/", articleHandler.CreateArticle)
 
-		// Pagination GET /article/:id/:offset (where :id represents limit)
-		// Sharing the wildcard parameter name ':id' avoids Gin wildcard routing conflict
 		articleGroup.GET("/:id/:offset", articleHandler.GetArticles)
-
-		// Get detail GET /article/:id
 		articleGroup.GET("/:id", articleHandler.GetArticleByID)
 
-		// Support PATCH, PUT for article update
 		articleGroup.PATCH("/:id", articleHandler.UpdateArticle)
 		articleGroup.PUT("/:id", articleHandler.UpdateArticle)
 
-		// Support DELETE for article deletion (soft delete to thrash)
 		articleGroup.DELETE("/:id", articleHandler.DeleteArticle)
 	}
 
