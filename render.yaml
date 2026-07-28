@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: sharing-vision-backend
+    env: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: singapore
+    envVars:
+      - key: DB_USER
+        value: 4TYLPkigyGPqtu5.root
+      - key: DB_PASSWORD
+        value: eU91Td4D7tdl9YEA
+      - key: DB_HOST
+        value: gateway01.ap-southeast-1.prod.aws.tidbcloud.com
+      - key: DB_PORT
+        value: "4000"
+      - key: DB_NAME
+        value: test
