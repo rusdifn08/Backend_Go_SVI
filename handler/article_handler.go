@@ -19,7 +19,6 @@ func NewArticleHandler(service service.ArticleService) *ArticleHandler {
 	return &ArticleHandler{service: service}
 }
 
-// Helper to format validation errors
 func formatValidationError(err error) map[string]string {
 	errs := make(map[string]string)
 	if validationErrs, ok := err.(validator.ValidationErrors); ok {
@@ -65,9 +64,12 @@ func (h *ArticleHandler) CreateArticle(c *gin.Context) {
 	c.JSON(http.StatusCreated, res)
 }
 
-// GET /article/:limit/:offset
+// GET /article/:limit/:offset (mapped as /article/:id/:offset to prevent Gin route wildcard conflict)
 func (h *ArticleHandler) GetArticles(c *gin.Context) {
-	limitStr := c.Param("limit")
+	limitStr := c.Param("id")
+	if limitStr == "" {
+		limitStr = c.Param("limit")
+	}
 	offsetStr := c.Param("offset")
 
 	limit, err := strconv.Atoi(limitStr)
@@ -86,7 +88,6 @@ func (h *ArticleHandler) GetArticles(c *gin.Context) {
 		return
 	}
 
-	// Returning list directly as specified in PDF specification array [{ "title": "", ... }] or data object
 	c.JSON(http.StatusOK, res.Data)
 }
 
